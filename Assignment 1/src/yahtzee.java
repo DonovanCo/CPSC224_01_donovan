@@ -1,4 +1,9 @@
-//
+/***************
+Homework #1
+Due Date: Jan 29, 2018
+Names:
+********************/
+
 public class yahtzee
 {
 	public static void main(String[] args)
