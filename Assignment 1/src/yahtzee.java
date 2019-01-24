@@ -1,7 +1,7 @@
 /***************
 Homework #1
 Due Date: Jan 29, 2018
-Names:
+Names: Cole Donovan
 ********************/
 
 public class yahtzee
