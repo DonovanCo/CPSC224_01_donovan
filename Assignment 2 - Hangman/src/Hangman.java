@@ -10,7 +10,7 @@ public class Hangman {
 	// main: serves only to call other functions
 	// to run the main hangman game.
 	public static void main(String[] args) {
-		
+		// comment
 		
 		
 	}
