@@ -61,8 +61,9 @@ public class Player {
 	
 	// Returns true if both char arrays are NOT equal.
 	// False otherwise.
-	public bool isNotEqual()
+	public boolean isNotEqual()
 	{
+		boolean eq = true;
 		for(int i = 0; i<size; i++)
 		{
 			
