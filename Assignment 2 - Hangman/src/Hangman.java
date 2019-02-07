@@ -13,5 +13,12 @@ public class Hangman {
 		// comment
 		
 	}
+	
+	public static String randomWord()
+	{
+		String list[] = {"psychic", "gonzaga", "coding", "hemmingson", "metamorphosis", "balloon", "valentine", "chip", "extra", "bulldog"};
+		int num = (int)(Math.random()*10);
+		return list[num];
+	}
 
 }

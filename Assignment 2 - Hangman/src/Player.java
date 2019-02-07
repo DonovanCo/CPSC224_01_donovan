@@ -17,7 +17,7 @@ public class Player {
 		dummyWord = new char[size];
 		for(int i = 0; i<size; i++)
 		{
-			guessWord[i]=a.charAt(i);
+			guessWord[i]=a.toUpperCase().charAt(i);
 			dummyWord[i]='-';
 		}
 		
