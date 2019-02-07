@@ -1,4 +1,4 @@
-
+import java.util.Arrays;
 // Player class: a simple class that will hold the number of strikes,
 // word to be guessed, and the string of letters guessed so far.
   
@@ -18,7 +18,7 @@ public class Player {
 		for(int i = 0; i<size; i++)
 		{
 			guessWord[i]=a.charAt(i);
-			dummyWord[i]='_';
+			dummyWord[i]='-';
 		}
 		
 	}
@@ -63,11 +63,18 @@ public class Player {
 	// False otherwise.
 	public boolean isNotEqual()
 	{
-		boolean eq = true;
-		for(int i = 0; i<size; i++)
+		return !Arrays.equals(guessWord, dummyWord);
+	}
+	
+	// Returns true if the guessed char is in the word.
+	public boolean isFoundInWord(char ch)
+	{
+		for(char i : guessWord)
 		{
-			
+			if(i==ch)
+				return true;
 		}
+		return false;
 	}
 	
 }
