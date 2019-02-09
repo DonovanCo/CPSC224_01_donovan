@@ -1,10 +1,10 @@
 
-/****************************************
+/*******************************************************************
 	Homework #2
 	Due Date: 02-11-2019
 	Names: Ian Gioffre and Cole Donovan
 	Repo URL: https://github.com/DonovanCo/CPSC224_01_donovan.git
-****************************************/
+*******************************************************************/
 
 import javax.swing.JOptionPane;
 
@@ -27,8 +27,8 @@ public class Hangman
 	
 	public static void menu()
 	{
-		String input;
-		int choice;
+		String input = null;
+		int choice = 0;
 		
 		while(choice < 1 || choice > 3)
 		{
@@ -39,23 +39,24 @@ public class Hangman
 												+ "Enter the number of your choice");
 			choice = Integer.parseInt(input);
 			
-			switch(choice)
-			{
-				case 1: 
-					Player game = new Player(randomWord());
-					playGame(game.getGuessWord());
-					break;
-				case 2:
-					Player game = new Player(getPlayerWord());
-					playGame(game.getGuessWord());
-					break;
-				case 3:
-					showMessageDialog(null, "Thanks for playing!");
-					System.exit(0);
-					break;
-				default:
-					showMessageDialog(null, "That is not an option. Try again.");
-			}
+			if(choice < 1 || choice > 3)
+				JOptionPane.showMessageDialog(null, "That is not an option. Please try again.");
+		}
+		
+		switch(choice)
+		{
+			case 1: 
+				Player randomGame = new Player(randomWord());
+				playGame(randomGame);
+				break;
+			case 2:
+				Player inputGame = new Player(getPlayerWord());
+				playGame(inputGame);
+				break;
+			case 3:
+				JOptionPane.showMessageDialog(null, "Thanks for playing!");
+				System.exit(0);
+				break;
 		}
 	}
 	
@@ -66,7 +67,7 @@ public class Hangman
 	
 	public static String hangman(int strikes)
 	{
-		String output;
+		String output = null;
 		
 		switch(strikes)
 		{
@@ -109,11 +110,11 @@ public class Hangman
 		return output;
 	}
 	
-	public static void playGame(char[] word)
+	public static void playGame(Player game)
 	{
 		
 		
-		showHangman(game.getStrikes());
+		JOptionPane.showMessageDialog(null, hangman(game.getStrikes()));
 	}
 
 }
