@@ -110,9 +110,23 @@ public class Hangman
 		return output;
 	}
 	
+	public static String getPlayerGuess(Player game)
+	{
+		String guess = new String(game.getDummyWord());
+		return JOptionPane.showInputDialog(guess + hangman(game.getStrikes())
+									+ "Enter your guess");
+	}
+	
 	public static void playGame(Player game)
 	{
-		
+		while(game.getStrikes() < 6 || game.isNotEqual())
+		{
+			char guess = null;
+			guess = getPlayerGuess(game).toChar();
+			
+			if(game.isFoundInWord(guess))
+				
+		}
 		
 		JOptionPane.showMessageDialog(null, hangman(game.getStrikes()));
 	}

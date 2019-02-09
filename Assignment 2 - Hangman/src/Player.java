@@ -59,6 +59,11 @@ public class Player {
 		dummyWord = dummy;
 	}
 	
+	public void setDummyCharacter(char letter, int position)
+	{
+		dummyWord[position] = letter;
+	}
+	
 	// Returns true if both char arrays are NOT equal.
 	// False otherwise.
 	public boolean isNotEqual()
