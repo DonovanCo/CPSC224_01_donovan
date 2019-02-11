@@ -3,13 +3,8 @@
 	Homework #2
 	Due Date: 02-11-2019
 	Names: Ian Gioffre and Cole Donovan
-<<<<<<< HEAD
 	Repo URL: https://github.com/DonovanCo/CPSC224_01_donovan.git
 *******************************************************************/
-=======
-	URL: https://github.com/DonovanCo/CPSC224_01_donovan.git
-****************************************/
->>>>>>> bb830e1541f7f349e1959ebeab9db6b3690bf4d7
 
 import javax.swing.JOptionPane;
 
