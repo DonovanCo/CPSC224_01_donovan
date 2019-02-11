@@ -15,7 +15,8 @@ public class Hangman
 	// to run the main hangman game.
 	public static void main(String[] args)
 	{
-		menu();
+		while(true)
+			menu();
 	}
 	
 	public static String randomWord()
@@ -58,6 +59,8 @@ public class Hangman
 				System.exit(0);
 				break;
 		}
+		
+		JOptionPane.showMessageDialog(null, "Thanks for playing!");
 	}
 	
 	public static String getPlayerWord()
@@ -110,25 +113,52 @@ public class Hangman
 		return output;
 	}
 	
-	public static String getPlayerGuess(Player game)
+	public static char getPlayerGuess(Player game)
 	{
-		String guess = new String(game.getDummyWord());
-		return JOptionPane.showInputDialog(guess + hangman(game.getStrikes())
-									+ "Enter your guess");
+		String dummy = game.getDummyWord();
+		String input = null;
+		char guess = ' ';
+		
+		while(!( ((int) guess >= 65 && (int) guess <= 90) || ((int) guess >= 97 && (int) guess <= 122)))
+		{
+			input = JOptionPane.showInputDialog(dummy + "\n" + hangman(game.getStrikes()) + "Enter your guess");
+			guess = input.charAt(0);
+			
+			if(!( ((int) guess >= 65 && (int) guess <= 90) || ((int) guess >= 97 && (int) guess <= 122)))
+				JOptionPane.showMessageDialog(null, "That is not a valid guess. Please try again.");
+		}
+		
+		return guess;
 	}
 	
 	public static void playGame(Player game)
 	{
-		while(game.getStrikes() < 6 || game.isNotEqual())
+		while(game.getStrikes() < 6 && game.isNotEqual())
 		{
-			char guess = null;
-			guess = getPlayerGuess(game).toChar();
+			char guess;
+			guess = getPlayerGuess(game);
 			
 			if(game.isFoundInWord(guess))
-				
+			{
+				game.setDummyCharacter(guess);
+				JOptionPane.showMessageDialog(null, "Nice! That letter is in the word.");
+			}
+			else
+			{
+				game.setStrikes(game.getStrikes() + 1);
+				JOptionPane.showMessageDialog(null, "That letter is not in the word. Please try again.");
+			}
 		}
 		
-		JOptionPane.showMessageDialog(null, hangman(game.getStrikes()));
+		gameEnd(game);
+	}
+	
+	public static void gameEnd(Player game)
+	{
+		if(game.getStrikes() >=6)
+			JOptionPane.showMessageDialog(null, "You lost! The word was " + game.getGuessWord() + ".\n" + hangman(game.getStrikes()));
+		else
+			JOptionPane.showMessageDialog(null, "You won! The word was " + game.getGuessWord() + ". Congratulations!");
 	}
 
 }

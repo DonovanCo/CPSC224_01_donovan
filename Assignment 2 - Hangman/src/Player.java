@@ -15,7 +15,7 @@ public class Player {
 		size = a.length();
 		guessWord = new char[size];
 		dummyWord = new char[size];
-		for(int i = 0; i<size; i++)
+		for(int i = 0; i < size; i++)
 		{
 			guessWord[i]=a.toUpperCase().charAt(i);
 			dummyWord[i]='-';
@@ -39,9 +39,10 @@ public class Player {
 		size = s;
 	}
 
-	public char[] getGuessWord() 
+	public String getGuessWord() 
 	{
-		return guessWord;
+		String output = new String(guessWord);
+		return output;
 	}
 
 	public void setGuessWord(char[] guess) 
@@ -49,9 +50,10 @@ public class Player {
 		guessWord = guess;
 	}
 
-	public char[] getDummyWord() 
+	public String getDummyWord() 
 	{
-		return dummyWord;
+		String output = new String(dummyWord);
+		return output;
 	}
 
 	public void setDummyWord(char[] dummy)
@@ -59,9 +61,16 @@ public class Player {
 		dummyWord = dummy;
 	}
 	
-	public void setDummyCharacter(char letter, int position)
+	// Sets all characters in dummy word to the letter inputted
+	public void setDummyCharacter(char letter)
 	{
-		dummyWord[position] = letter;
+		letter = Character.toUpperCase(letter);
+		
+		for(int i = 0; i < size; i++)
+		{
+			if(guessWord[i] == letter)
+				dummyWord[i] = letter;
+		}
 	}
 	
 	// Returns true if both char arrays are NOT equal.
@@ -74,9 +83,10 @@ public class Player {
 	// Returns true if the guessed char is in the word.
 	public boolean isFoundInWord(char ch)
 	{
+		ch = Character.toUpperCase(ch);
 		for(char i : guessWord)
 		{
-			if(i==ch)
+			if(i == ch)
 				return true;
 		}
 		return false;
