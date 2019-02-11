@@ -19,6 +19,7 @@ public class Hangman
 			menu();
 	}
 	
+	//returns a random word from a list as a string
 	public static String randomWord()
 	{
 		String list[] = {"psychic", "gonzaga", "coding", "hemmingson", "metamorphosis", "balloon", "valentine", "chip", "extra", "bulldog"};
@@ -26,6 +27,7 @@ public class Hangman
 		return list[num];
 	}
 	
+	// shows a menu and gets the user's menu option, then runs based on option
 	public static void menu()
 	{
 		String input = null;
@@ -63,11 +65,32 @@ public class Hangman
 		JOptionPane.showMessageDialog(null, "Thanks for playing!");
 	}
 	
+	//returns a word entered by the user as a string
 	public static String getPlayerWord()
 	{
-		return JOptionPane.showInputDialog("Enter a word for another player to guess.");
+		boolean areLetters = false;
+		String word = null;
+		
+		while(!areLetters)
+		{
+			word = JOptionPane.showInputDialog("Enter a word for another player to guess.");
+			
+			for(int i = 0; i < word.length(); i++)
+			{
+				areLetters = ( ((int) word.charAt(i) >= 65 && (int) word.charAt(i) <= 90) || ((int) word.charAt(i) >= 97 && (int) word.charAt(i) <= 122) );
+
+				if(!areLetters)
+				{
+					JOptionPane.showMessageDialog(null, "That is not a valid word. Please try again.");
+					i = word.length();
+				}
+			}
+		}
+		
+		return word;
 	}
 	
+	// returns a picture of a hangman as a string based on strike count
 	public static String hangman(int strikes)
 	{
 		String output = null;
@@ -113,6 +136,7 @@ public class Hangman
 		return output;
 	}
 	
+	// returns the player's guess as a character
 	public static char getPlayerGuess(Player game)
 	{
 		String dummy = game.getDummyWord();
@@ -131,6 +155,7 @@ public class Hangman
 		return guess;
 	}
 	
+	// runs the game until strikes hit 6 or word is completely guessed, then calls gameEnd
 	public static void playGame(Player game)
 	{
 		while(game.getStrikes() < 6 && game.isNotEqual())
@@ -153,6 +178,7 @@ public class Hangman
 		gameEnd(game);
 	}
 	
+	// outputs game end messages based on if player won or not
 	public static void gameEnd(Player game)
 	{
 		if(game.getStrikes() >=6)

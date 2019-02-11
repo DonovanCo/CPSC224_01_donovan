@@ -61,7 +61,7 @@ public class Player {
 		dummyWord = dummy;
 	}
 	
-	// Sets all characters in dummy word to the letter inputted
+	// Sets all characters in dummyWord that are letter in guessWord to the letter
 	public void setDummyCharacter(char letter)
 	{
 		letter = Character.toUpperCase(letter);
