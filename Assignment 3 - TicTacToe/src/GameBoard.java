@@ -10,7 +10,7 @@ public class GameBoard extends JFrame
 	public GameBoard()
 	{
 		// Display a title.
-	    setTitle("TicTacToe");
+	    setTitle("TicTacToe"); 
 	    
 	    //sets the size of the frame.
 	    setSize(500, 500);
