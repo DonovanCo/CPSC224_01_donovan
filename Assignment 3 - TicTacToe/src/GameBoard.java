@@ -9,6 +9,8 @@ public class GameBoard extends JFrame
 	private PlayerPanel player;
 	private BoardPanel board;
 	private ButtonsPanel buttons;
+	private final int WINDOW_WIDTH = 500; // Window width
+	private final int WINDOW_HEIGHT = 500; // Window height
 	
 	public GameBoard()
 	{
@@ -16,7 +18,7 @@ public class GameBoard extends JFrame
 	    setTitle("TicTacToe"); 
 	    
 	    //sets the size of the frame.
-	    setSize(500, 500);
+	    setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
 	    // Specify an action for the close button.
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,7 +32,6 @@ public class GameBoard extends JFrame
 	    
 	    add(board, BorderLayout.CENTER);
 	    
-	    pack();
 	    setVisible(true);
 	    
 	}

@@ -29,6 +29,16 @@ public class BoardPanel extends JPanel
 		b32 = new JButton("");
 		b33 = new JButton("");
 		
+		b11.setEnabled(false);
+		b12.setEnabled(false);
+		b13.setEnabled(false);
+		b21.setEnabled(false);
+		b22.setEnabled(false);
+		b23.setEnabled(false);
+		b31.setEnabled(false);
+		b32.setEnabled(false);
+		b33.setEnabled(false);
+		
 		add(b11);
 		add(b12);
 		add(b13);
