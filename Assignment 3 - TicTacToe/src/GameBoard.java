@@ -6,6 +6,9 @@ import java.awt.event.*;
 
 public class GameBoard extends JFrame
 {
+	private PlayerPanel player;
+	private BoardPanel board;
+	private ButtonsPanel buttons;
 	
 	public GameBoard()
 	{
@@ -20,6 +23,16 @@ public class GameBoard extends JFrame
 
 	    // Create a BorderLayout manager.
 	    setLayout(new BorderLayout());
+	    
+	    player = new PlayerPanel();
+	    board = new BoardPanel();
+	    buttons = new ButtonsPanel();
+	    
+	    add(board, BorderLayout.CENTER);
+	    
+	    pack();
+	    setVisible(true);
+	    
 	}
 	
 }
