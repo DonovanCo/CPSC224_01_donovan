@@ -1,7 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 
-// Creates the 3x3 TicTacToe Board
+// Creates the 3x3 TicTacToe Board.
 
 public class BoardPanel extends JPanel
 {
