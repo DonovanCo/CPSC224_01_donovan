@@ -30,7 +30,7 @@ public class BoardPanel extends JPanel
 			tilePlayed.setFont(new Font("Dialog", 1, 60));
 			String currentLetter = "";
 			if((turnCount%2==0) && tilePlayed.getText().equals(""))
-			{
+			{ 
 				tilePlayed.setText("X");
 				turnCount++;
 				currentLetter="X";
