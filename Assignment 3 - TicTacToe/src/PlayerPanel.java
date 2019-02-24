@@ -71,4 +71,20 @@ public class PlayerPanel extends JPanel
 		name1.setEditable(false);
 		name2.setEditable(false);
 	}
+	
+	public void player1Won()
+	{
+		winNum1++;
+		
+		wins1.setText(String.valueOf(winNum1));
+		losses2.setText(String.valueOf(winNum1));
+	}
+	
+	public void player2Won()
+	{
+		winNum2++;
+		
+		wins2.setText(String.valueOf(winNum2));
+		losses1.setText(String.valueOf(winNum2));
+	}
 }
