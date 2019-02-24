@@ -9,7 +9,7 @@ public class BoardPanel extends JPanel
 	
 	private static JButton tiles[] = new JButton[9];
 	private static int turnCount = 0;
-	private static String currentLetter = "";
+	private static String currentLetter = "O";
 	
 	public BoardPanel()
 	{
@@ -75,8 +75,6 @@ public class BoardPanel extends JPanel
 				gameStatus=true;
 			}
 			
-			int answer=0;
-			
 			if(gameStatus)
 			{
 				for(int i=0; i<9; i++)
@@ -85,17 +83,17 @@ public class BoardPanel extends JPanel
 					PlayerPanel.player1Won();
 				else
 					PlayerPanel.player2Won();
-				answer=JOptionPane.showConfirmDialog(null, currentLetter + " Wins!!! Would you like to play again?");
+				JOptionPane.showMessageDialog(null, currentLetter + " Wins!!!");
 			}
 			else if(gameStatus==false && turnCount == 9)
 			{
 				for(int i=0; i<9; i++)
 					tiles[i].setEnabled(false);
-				answer=JOptionPane.showConfirmDialog(null, "Tie, no one wins. Would you like to play again?");
+				JOptionPane.showMessageDialog(null, "Tie, no one wins.");
 				gameStatus=true;
 			}
 			
-			if(answer==JOptionPane.YES_OPTION && gameStatus)
+			if(gameStatus)
 			{
 				for(int i = 0; i<9; i++)
 				{
@@ -103,10 +101,10 @@ public class BoardPanel extends JPanel
 					tiles[i].setEnabled(true);
 				}
 				turnCount=0;
+				currentLetter = "O";
 			}
-			else if(answer==JOptionPane.NO_OPTION && gameStatus)
-				System.exit(0);
 			
+			GameBoard.updateStatus();
 		}
 	}
 	

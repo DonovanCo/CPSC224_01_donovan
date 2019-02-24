@@ -18,7 +18,7 @@ public class GameBoard extends JFrame
 	private JButton exit;
 	private JPanel buttons;
 	private JPanel bottomPanel;
-	private JLabel status;
+	private static JLabel status;
 	
 	public GameBoard()
 	{
@@ -66,7 +66,7 @@ public class GameBoard extends JFrame
 		buttons.add(exit);
 		
 		//create status label for bottom
-		status = new JLabel("status");
+		status = new JLabel("Welcome to Tic-Tac-Toe!");
 		status.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		
 		bottomPanel = new JPanel(new BorderLayout());
@@ -80,9 +80,20 @@ public class GameBoard extends JFrame
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			player.setEditable(false); // prohibit name changes
-			
-			BoardPanel.enableBoard();
+			if(PlayerPanel.getNameX().equals("") || PlayerPanel.getNameX().charAt(0) == ' ') // if name is blank or starts with a space
+			{
+				JOptionPane.showMessageDialog(null, "Player 1's name is invalid. Enter a new name.","Invalid Name", JOptionPane.ERROR_MESSAGE);
+			}
+			else if(PlayerPanel.getNameO().equals("") || PlayerPanel.getNameO().charAt(0) == ' ') // if name is blank or starts with a space
+			{
+				JOptionPane.showMessageDialog(null, "Player 2's name is invalid. Enter a new name.","Invalid Name", JOptionPane.ERROR_MESSAGE);
+			}
+			else
+			{
+				player.setEditable(false); // prohibit name changes
+				updateStatus();
+				BoardPanel.enableBoard();
+			}
 		}
 	}
 	
@@ -90,9 +101,18 @@ public class GameBoard extends JFrame
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			player.reset(); // sets win counts to 0
-			BoardPanel.clearBoard();
-			BoardPanel.disableBoard();
+			int input = 0;
+			input = JOptionPane.showConfirmDialog(null, "This will end the game and set the win/loss stats to 0. Are you sure?");
+			
+			if(input == JOptionPane.YES_OPTION)
+			{
+				player.reset(); // sets win counts to 0
+				
+				status.setText("Welcome to Tic-Tac-Toe!");
+				
+				BoardPanel.clearBoard();
+				BoardPanel.disableBoard();
+			}
 		}
 	}
 	
@@ -102,5 +122,13 @@ public class GameBoard extends JFrame
 		{
 			System.exit(0);
 		}
+	}
+	
+	public static void updateStatus()
+	{
+		if(BoardPanel.getCurrentLetter() == "O") // always one ahead of currentLetter
+			status.setText(PlayerPanel.getNameX() + "'s turn.");
+		else
+			status.setText(PlayerPanel.getNameO() + "'s turn.");
 	}
 }

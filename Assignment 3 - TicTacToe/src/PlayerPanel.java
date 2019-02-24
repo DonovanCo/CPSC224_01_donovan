@@ -13,8 +13,8 @@ public class PlayerPanel extends JPanel
 	private final JLabel winLabel2 = new JLabel("Wins: ");
 	private final JLabel lossLabel1 = new JLabel("Losses: ");
 	private final JLabel lossLabel2 = new JLabel("Losses: ");
-	private JTextField name1;
-	private JTextField name2;
+	private static JTextField name1;
+	private static JTextField name2;
 	private static int winNum1 = 0;
 	private static int winNum2 = 0;
 	private static JLabel wins1;
@@ -83,11 +83,6 @@ public class PlayerPanel extends JPanel
 	
 	public void reset()
 	{
-		int input = 0;
-		input = JOptionPane.showConfirmDialog(null, "This will end the game and set the win/loss stats to 0. Are you sure?");
-		
-		if(input == JOptionPane.YES_OPTION)
-		{
 			winNum1 = 0;
 			winNum2 = 0;
 		
@@ -99,7 +94,15 @@ public class PlayerPanel extends JPanel
 			name1.setText("Player 1");
 			name2.setText("Player 2");
 			setEditable(true);
-		}
 	}
 	
+	public static String getNameX()
+	{
+		return name1.getText();
+	}
+	
+	public static String getNameO()
+	{
+		return name2.getText();
+	}
 }
