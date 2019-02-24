@@ -15,12 +15,12 @@ public class PlayerPanel extends JPanel
 	private final JLabel lossLabel2 = new JLabel("Losses: ");
 	private JTextField name1;
 	private JTextField name2;
-	private int winNum1 = 0;
-	private int winNum2 = 0;
-	private JLabel wins1;
-	private JLabel wins2;
-	private JLabel losses1;
-	private JLabel losses2;
+	private static int winNum1 = 0;
+	private static int winNum2 = 0;
+	private static JLabel wins1;
+	private static JLabel wins2;
+	private static JLabel losses1;
+	private static JLabel losses2;
 	
 	public PlayerPanel()
 	{
@@ -65,7 +65,7 @@ public class PlayerPanel extends JPanel
 		name2.setEditable(edit);
 	}
 	
-	public void player1Won()
+	public static void player1Won()
 	{
 		winNum1++;
 		
@@ -73,7 +73,7 @@ public class PlayerPanel extends JPanel
 		losses2.setText(String.valueOf(winNum1));
 	}
 	
-	public void player2Won()
+	public static void player2Won()
 	{
 		winNum2++;
 		
@@ -101,4 +101,5 @@ public class PlayerPanel extends JPanel
 			setEditable(true);
 		}
 	}
+	
 }

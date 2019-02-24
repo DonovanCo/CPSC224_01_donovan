@@ -9,6 +9,7 @@ public class BoardPanel extends JPanel
 	
 	private static JButton tiles[] = new JButton[9];
 	private static int turnCount = 0;
+	private static String currentLetter = "";
 	
 	public BoardPanel()
 	{
@@ -17,8 +18,25 @@ public class BoardPanel extends JPanel
 		for(int i = 0; i<9; i++)
 		{
 			tiles[i] = new JButton("");
+			tiles[i].setEnabled(false);
 			tiles[i].addActionListener(new tileListener());
 			add(tiles[i]);
+		}
+	}
+	
+	public static void enableBoard()
+	{
+		for(int i = 0; i<9; i++)
+		{
+			tiles[i].setEnabled(true);
+		}
+	}
+	
+	public static void disableBoard()
+	{
+		for(int i = 0; i<9; i++)
+		{
+			tiles[i].setEnabled(false);
 		}
 	}
 	
@@ -28,7 +46,6 @@ public class BoardPanel extends JPanel
 		{
 			JButton tilePlayed = (JButton)e.getSource();
 			tilePlayed.setFont(new Font("Dialog", 1, 60));
-			String currentLetter = "";
 			if((turnCount%2==0) && tilePlayed.getText().equals(""))
 			{ 
 				tilePlayed.setText("X");
@@ -64,6 +81,10 @@ public class BoardPanel extends JPanel
 			{
 				for(int i=0; i<9; i++)
 					tiles[i].setEnabled(false);
+				if(currentLetter=="X")
+					PlayerPanel.player1Won();
+				else
+					PlayerPanel.player2Won();
 				answer=JOptionPane.showConfirmDialog(null, currentLetter + " Wins!!! Would you like to play again?");
 			}
 			else if(gameStatus==false && turnCount == 9)
@@ -87,6 +108,21 @@ public class BoardPanel extends JPanel
 				System.exit(0);
 			
 		}
+	}
+	
+	public static void clearBoard()
+	{
+		for(int i = 0; i<9; i++)
+		{
+			tiles[i].setText("");
+			tiles[i].setEnabled(true);
+		}
+		turnCount=0;
+	}
+	
+	public static String getCurrentLetter()
+	{
+		return currentLetter;
 	}
 	
 }

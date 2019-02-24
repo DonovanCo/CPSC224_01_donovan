@@ -82,7 +82,7 @@ public class GameBoard extends JFrame
 		{
 			player.setEditable(false); // prohibit name changes
 			
-			
+			BoardPanel.enableBoard();
 		}
 	}
 	
@@ -91,7 +91,8 @@ public class GameBoard extends JFrame
 		public void actionPerformed(ActionEvent e)
 		{
 			player.reset(); // sets win counts to 0
-			clearBoard();
+			BoardPanel.clearBoard();
+			BoardPanel.disableBoard();
 		}
 	}
 	
