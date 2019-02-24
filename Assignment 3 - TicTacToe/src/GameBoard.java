@@ -30,7 +30,9 @@ public class GameBoard extends JFrame
 	    board = new BoardPanel();
 	    buttons = new ButtonsPanel();
 	    
+	    add(player, BorderLayout.NORTH);
 	    add(board, BorderLayout.CENTER);
+	    add(buttons, BorderLayout.SOUTH);
 	    
 	    setVisible(true);
 	    
