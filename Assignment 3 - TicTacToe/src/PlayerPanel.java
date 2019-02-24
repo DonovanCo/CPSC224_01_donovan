@@ -1,6 +1,5 @@
 import java.awt.*;
 import javax.swing.*;
-import java.awt.event.*;
 
 // creates the player panel for the game board
 
@@ -60,16 +59,10 @@ public class PlayerPanel extends JPanel
 		add(player2);
 	}
 	
-	public void setEditable()
+	public void setEditable(boolean edit)
 	{
-		name1.setEditable(true);
-		name2.setEditable(true);
-	}
-	
-	public void setUneditable()
-	{
-		name1.setEditable(false);
-		name2.setEditable(false);
+		name1.setEditable(edit);
+		name2.setEditable(edit);
 	}
 	
 	public void player1Won()
@@ -86,5 +79,26 @@ public class PlayerPanel extends JPanel
 		
 		wins2.setText(String.valueOf(winNum2));
 		losses1.setText(String.valueOf(winNum2));
+	}
+	
+	public void reset()
+	{
+		int input = 0;
+		input = JOptionPane.showConfirmDialog(null, "This will end the game and set the win/loss stats to 0. Are you sure?");
+		
+		if(input == JOptionPane.YES_OPTION)
+		{
+			winNum1 = 0;
+			winNum2 = 0;
+		
+			wins1.setText(String.valueOf(winNum1));
+			losses2.setText(String.valueOf(winNum1));
+			wins2.setText(String.valueOf(winNum2));
+			losses1.setText(String.valueOf(winNum2));
+			
+			name1.setText("Player 1");
+			name2.setText("Player 2");
+			setEditable(true);
+		}
 	}
 }

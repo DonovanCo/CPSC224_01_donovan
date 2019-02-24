@@ -70,7 +70,7 @@ public class BoardPanel extends JPanel
 			{
 				for(int i=0; i<9; i++)
 					tiles[i].setEnabled(false);
-				answer=JOptionPane.showConfirmDialog(null, "Tie, everyone loses. Would you like to play again?");
+				answer=JOptionPane.showConfirmDialog(null, "Tie, no one wins. Would you like to play again?");
 				gameStatus=true;
 			}
 			

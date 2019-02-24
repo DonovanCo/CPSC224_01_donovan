@@ -6,12 +6,10 @@
 	Repo URL: https://github.com/DonovanCo/CPSC224_01_donovan.git
 *******************************************************************/
 
-public class TicTacToe {
-
-	public static void main(String[] args) {
-		
+public class TicTacToe 
+{
+	public static void main(String[] args) 
+	{
 		new GameBoard();
-
 	}
-
 }
