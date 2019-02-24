@@ -1,6 +1,8 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import javax.swing.BorderFactory; 
+import javax.swing.border.EtchedBorder;
 
 // creates the panel for the buttons to start a new game, reset the board, and exit the game
 
@@ -34,6 +36,7 @@ public class ButtonsPanel extends JPanel
 		
 		//create status label for bottom
 		status = new JLabel("status");
+		status.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		
 		setLayout(new BorderLayout());
 		
@@ -62,7 +65,7 @@ public class ButtonsPanel extends JPanel
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			
+			System.exit(0);
 		}
 	}
 }
