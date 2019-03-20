@@ -7,6 +7,8 @@
 *******************************************************************/
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.Timer;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -23,6 +25,9 @@ public class Parallax extends JFrame {
 		setSize(300, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
+		
+		
+		
 		setVisible(true);
 	}
 	
@@ -31,3 +36,4 @@ public class Parallax extends JFrame {
 	}
 
 }
+
