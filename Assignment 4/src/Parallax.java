@@ -6,6 +6,28 @@
 	Repo URL: https://github.com/DonovanCo/CPSC224_01_donovan.git
 *******************************************************************/
 
-public class Parallax {
+import javax.swing.JFrame;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Parallax extends JFrame {
+	
+	private int midX = 150;
+	private int midY = 150;
+	
+	// Constructor that creates the frame and
+	// adds necessary listeners.
+	Parallax()
+	{
+		setTitle("Motion Parallax");
+		setSize(300, 300);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
+		setVisible(true);
+	}
+	
+	public static void main(String[] args){
+		new Parallax();
+	}
 
 }
