@@ -18,5 +18,5 @@ public class ParallaxPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		
 	}
-	
+	 
 }
