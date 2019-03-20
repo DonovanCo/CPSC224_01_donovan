@@ -26,7 +26,8 @@ public class Parallax extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		
-		
+		ParallaxPanel pp = new ParallaxPanel();
+		add(pp);
 		
 		setVisible(true);
 	}
