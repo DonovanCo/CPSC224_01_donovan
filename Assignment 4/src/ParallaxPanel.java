@@ -17,7 +17,7 @@ public class ParallaxPanel extends JPanel implements ActionListener {
 	private int [] mountainOneX = {0, 100, 200};
 	private int [] mountainOneY = {300, 75, 300};
 	private int [] mountainTwoX = {100, 200, 300};
-	private int [] mountainTwoY = {300, 95, 300};
+	private int [] mountainTwoY = {300, 95, 300}; 
 	
 	ParallaxPanel()
 	{
