@@ -1,16 +1,6 @@
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-
-import javax.swing.JPanel;
-import javax.swing.Timer;
-
-import DrawBoxes.MyMouseListener;
-import DrawBoxes.MyMouseMotionListener;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
 public class ParallaxPanel extends JPanel implements ActionListener {
 
@@ -46,7 +36,7 @@ public class ParallaxPanel extends JPanel implements ActionListener {
 			g.fillRect(0, 0, 300, 300);
 			//Sun
 			g.setColor(Color.yellow);
-			g.fillOval(230 + (int)(xOffset*.10), 30+ (int)(yOffset*.10), 30, 30);
+			g.fillOval(230 + (int)(xOffset*.05), 30+ (int)(yOffset*.05), 30, 30);
 			// First mountain
 			g.setColor(Color.GRAY);
 			g.fillPolygon(mountainOneX, mountainOneY, 3);
@@ -55,12 +45,12 @@ public class ParallaxPanel extends JPanel implements ActionListener {
 			g.fillPolygon(mountainTwoX, mountainTwoY, 3);
 			// Ground
 			g.setColor(Color.green);
-			g.fillRect(-50 + (int)(xOffset*.6), 200 + (int)(yOffset*.6), 400, 100);
+			g.fillRect(-60 + (int)(xOffset*.4), 200 + (int)(yOffset*.4), 420, 150);
 			// Tree
 			g.setColor(Color.getHSBColor((float)38, (float).545, (float).43));
-			g.fillRect(25 + (int)(xOffset*.7), 215 + (int)(yOffset*.7), 10, 40);
+			g.fillRect(25 + (int)(xOffset*.5), 215 + (int)(yOffset*.5), 10, 40);
 			g.setColor(Color.red);
-			g.fillOval(15 + (int)(xOffset*.7), 180 + (int)(yOffset*.7), 30, 55);
+			g.fillOval(15 + (int)(xOffset*.5), 180 + (int)(yOffset*.5), 30, 55);
 	   }
 	
 	public void actionPerformed(ActionEvent e) {
@@ -98,6 +88,8 @@ public class ParallaxPanel extends JPanel implements ActionListener {
 	      
 	      public void mouseMoved(MouseEvent e)
 	      {
+	    	  xOffset = e.getX() - 150;
+	    	  yOffset = e.getY() - 150;
 	      }
 	   }
 	 
