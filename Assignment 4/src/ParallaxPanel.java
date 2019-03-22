@@ -2,9 +2,15 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
+import DrawBoxes.MyMouseListener;
+import DrawBoxes.MyMouseMotionListener;
 
 public class ParallaxPanel extends JPanel implements ActionListener {
 
@@ -13,6 +19,11 @@ public class ParallaxPanel extends JPanel implements ActionListener {
 	
 	private int xOffset = 0;
 	private int yOffset = 0;
+	
+	private int [] OriginOneX = {0, 100, 200};
+	private int [] OriginOneY = {300, 75, 300};
+	private int [] OriginTwoX = {100, 200, 300};
+	private int [] OriginTwoY = {300, 95, 300}; 
 	
 	private int [] mountainOneX = {0, 100, 200};
 	private int [] mountainOneY = {300, 75, 300};
@@ -23,6 +34,8 @@ public class ParallaxPanel extends JPanel implements ActionListener {
 	{
 		timer = new Timer(delay, this);
 		timer.start();
+		addMouseListener(new MyMouseListener());
+	    addMouseMotionListener(new MyMouseMotionListener());
 	}
 	
 	public void paint(Graphics g)
@@ -50,8 +63,42 @@ public class ParallaxPanel extends JPanel implements ActionListener {
 			g.fillOval(15 + (int)(xOffset*.7), 180 + (int)(yOffset*.7), 30, 55);
 	   }
 	
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
 		repaint();
 	}
+	
+	 private class MyMouseListener implements MouseListener
+	   {
+	      public void mousePressed(MouseEvent e)
+	      {
+	      }
+
+	      public void mouseClicked(MouseEvent e)
+	      {
+	      }
+
+	      public void mouseReleased(MouseEvent e)
+	      {
+	      }
+
+	      public void mouseEntered(MouseEvent e)
+	      {
+	      }
+
+	      public void mouseExited(MouseEvent e)
+	      {
+	      }
+	   }
+
+	   private class MyMouseMotionListener implements MouseMotionListener
+	   {
+	      public void mouseDragged(MouseEvent e)
+	      {
+	      }
+	      
+	      public void mouseMoved(MouseEvent e)
+	      {
+	      }
+	   }
 	 
 }
