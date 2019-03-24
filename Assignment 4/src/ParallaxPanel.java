@@ -21,6 +21,8 @@ public class ParallaxPanel extends JPanel implements ActionListener {
 	private int [] mountainTwoY = {300, 95, 300};
 	
 	private char dayNight = 'd';
+	private final Color dayGreen = new Color(80,160,40);
+	private final Color nightGreen = new Color(50,100, 25);
 	
 	ParallaxPanel()
 	{
@@ -69,7 +71,10 @@ public class ParallaxPanel extends JPanel implements ActionListener {
 			// Tree
 			g.setColor(Color.getHSBColor((float)38, (float).545, (float).43));
 			g.fillRect(25 + (int)(xOffset*.5), 215 + (int)(yOffset*.5), 10, 40);
-			g.setColor(Color.red);
+			if(dayNight == 'd')
+				g.setColor(dayGreen);
+			else
+				g.setColor(nightGreen);
 			g.fillOval(15 + (int)(xOffset*.5), 180 + (int)(yOffset*.5), 30, 55);
 	   }
 	
