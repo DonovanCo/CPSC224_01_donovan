@@ -18,7 +18,9 @@ public class ParallaxPanel extends JPanel implements ActionListener {
 	private int [] mountainOneX = {0, 100, 200};
 	private int [] mountainOneY = {300, 75, 300};
 	private int [] mountainTwoX = {100, 200, 300};
-	private int [] mountainTwoY = {300, 95, 300}; 
+	private int [] mountainTwoY = {300, 95, 300};
+	
+	private char dayNight = 'd';
 	
 	ParallaxPanel()
 	{
@@ -32,20 +34,38 @@ public class ParallaxPanel extends JPanel implements ActionListener {
 	   {   
 			// Draws the different layers
 			// Skybox
-			g.setColor(Color.cyan);
+			if(dayNight == 'd')
+				g.setColor(Color.cyan);
+			else
+				g.setColor(Color.black);
 			g.fillRect(0, 0, 300, 300);
-			//Sun
-			g.setColor(Color.yellow);
+			
+			//Sun or moon
+			if(dayNight == 'd')
+				g.setColor(Color.yellow);
+			else
+				g.setColor(Color.white);
 			g.fillOval(230 + (int)(xOffset*.05), 30+ (int)(yOffset*.05), 30, 30);
+			
 			// First mountain
 			g.setColor(Color.GRAY);
+			for(int i = 0; i < 3; i++)
+			{
+				mountainOneX[i] = OriginOneX[i] + (int)(xOffset * .1);
+				mountainOneY[i] = OriginOneY[i] + (int)(yOffset * .1);
+				mountainTwoX[i] = OriginTwoX[i] + (int)(xOffset * .1);
+				mountainTwoY[i] = OriginTwoY[i] + (int)(yOffset * .1);
+			}
 			g.fillPolygon(mountainOneX, mountainOneY, 3);
+			
 			// Second Mountain
 			g.setColor(Color.DARK_GRAY);
 			g.fillPolygon(mountainTwoX, mountainTwoY, 3);
+			
 			// Ground
 			g.setColor(Color.green);
 			g.fillRect(-60 + (int)(xOffset*.4), 200 + (int)(yOffset*.4), 420, 150);
+			
 			// Tree
 			g.setColor(Color.getHSBColor((float)38, (float).545, (float).43));
 			g.fillRect(25 + (int)(xOffset*.5), 215 + (int)(yOffset*.5), 10, 40);
@@ -61,6 +81,7 @@ public class ParallaxPanel extends JPanel implements ActionListener {
 	   {
 	      public void mousePressed(MouseEvent e)
 	      {
+	    	  dayNight = 'n';
 	      }
 
 	      public void mouseClicked(MouseEvent e)
@@ -69,14 +90,19 @@ public class ParallaxPanel extends JPanel implements ActionListener {
 
 	      public void mouseReleased(MouseEvent e)
 	      {
+	    	  dayNight = 'd';
 	      }
 
 	      public void mouseEntered(MouseEvent e)
 	      {
+	    	  xOffset = e.getX() - 150;
+	    	  yOffset = e.getY() - 150;
 	      }
 
 	      public void mouseExited(MouseEvent e)
 	      {
+	    	  xOffset = 0;
+	    	  yOffset = 0;
 	      }
 	   }
 
@@ -84,6 +110,8 @@ public class ParallaxPanel extends JPanel implements ActionListener {
 	   {
 	      public void mouseDragged(MouseEvent e)
 	      {
+	    	  xOffset = e.getX() - 150;
+	    	  yOffset = e.getY() - 150;
 	      }
 	      
 	      public void mouseMoved(MouseEvent e)
