@@ -53,10 +53,10 @@ public class ParallaxPanel extends JPanel implements ActionListener {
 			g.setColor(Color.GRAY);
 			for(int i = 0; i < 3; i++)
 			{
-				mountainOneX[i] = OriginOneX[i] + (int)(xOffset * .1);
-				mountainOneY[i] = OriginOneY[i] + (int)(yOffset * .1);
-				mountainTwoX[i] = OriginTwoX[i] + (int)(xOffset * .1);
-				mountainTwoY[i] = OriginTwoY[i] + (int)(yOffset * .1);
+				mountainOneX[i] = OriginOneX[i] + (int)(xOffset * .15);
+				mountainOneY[i] = OriginOneY[i] + (int)(yOffset * .15);
+				mountainTwoX[i] = OriginTwoX[i] + (int)(xOffset * .15);
+				mountainTwoY[i] = OriginTwoY[i] + (int)(yOffset * .15);
 			}
 			g.fillPolygon(mountainOneX, mountainOneY, 3);
 			
@@ -65,7 +65,10 @@ public class ParallaxPanel extends JPanel implements ActionListener {
 			g.fillPolygon(mountainTwoX, mountainTwoY, 3);
 			
 			// Ground
-			g.setColor(Color.green);
+			if(dayNight == 'd')
+				g.setColor(Color.green);
+			else
+				g.setColor(dayGreen);
 			g.fillRect(-60 + (int)(xOffset*.4), 200 + (int)(yOffset*.4), 420, 150);
 			
 			// Tree
