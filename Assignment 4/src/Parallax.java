@@ -12,11 +12,12 @@ import javax.swing.Timer;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Parallax extends JFrame {
-	
+public class Parallax extends JFrame
+{
+
 	private int midX = 150;
 	private int midY = 150;
-	
+
 	// Constructor that creates the frame and
 	// adds necessary listeners.
 	Parallax()
@@ -25,16 +26,16 @@ public class Parallax extends JFrame {
 		setSize(300, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
-		
+
 		ParallaxPanel pp = new ParallaxPanel();
 		add(pp);
-		
+
 		setVisible(true);
 	}
-	
-	public static void main(String[] args){
+
+	public static void main(String[] args)
+	{
 		new Parallax();
 	}
 
 }
-
