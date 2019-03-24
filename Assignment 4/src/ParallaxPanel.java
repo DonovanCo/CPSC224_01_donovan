@@ -85,8 +85,7 @@ public class ParallaxPanel extends JPanel implements ActionListener {
 	      }
 
 	      public void mouseClicked(MouseEvent e)
-	      {
-	      }
+	      {}
 
 	      public void mouseReleased(MouseEvent e)
 	      {
