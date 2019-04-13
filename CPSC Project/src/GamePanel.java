@@ -46,7 +46,7 @@ public class GamePanel extends JPanel  implements ActionListener {
 			{
 				score+=baseScore*2;
 				dX=baseScore*2;
-			}
+			} 
 			else
 			{
 				score+=baseScore;
