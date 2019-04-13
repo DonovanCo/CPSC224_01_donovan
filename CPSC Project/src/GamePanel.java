@@ -9,7 +9,11 @@ public class GamePanel extends JPanel  implements ActionListener {
 	private int delay = 25;
 	private int count = 0;
 	private int baseScore = 2;
+	private int dX = 2;
 	protected Timer timer;
+	
+	private int mapX[] = {0};
+	private int mapY[] = {450};
 	
 	public GamePanel() {
 		timer = new Timer(delay, this);
@@ -21,6 +25,8 @@ public class GamePanel extends JPanel  implements ActionListener {
 	public void paint(Graphics g){
 		g.setColor(Color.white);
 		g.fillRect(0,0,600,600);
+		g.setColor(Color.black);
+		g.fillRect(mapX[0], mapY[0], 1000, 150);
 		g.setColor(Color.red);
 		g.setFont(new Font("SansSerif", Font.BOLD, 10)); 
 		g.drawString(Integer.toString(score), 10, 10);
@@ -32,12 +38,22 @@ public class GamePanel extends JPanel  implements ActionListener {
 		if(count%delay==0)
 		{
 			if(slow)
+			{
 				score+=baseScore/2;
+				dX=baseScore/2;
+			}
 			else if(fast)
+			{
 				score+=baseScore*2;
+				dX=baseScore*2;
+			}
 			else
+			{
 				score+=baseScore;
+				dX=baseScore;
+			}
 		}
+		reMap();
 		repaint();
 	}
 	
@@ -58,6 +74,14 @@ public class GamePanel extends JPanel  implements ActionListener {
         	else
         		resetSpeed();
         }
+	}
+	
+	public void reMap()
+	{
+		for(int i = 0; i<1; i++)
+		{
+			mapX[i]=mapX[i]-dX;
+		}
 	}
 	
 	public void goSlow() {
