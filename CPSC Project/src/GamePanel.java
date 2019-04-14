@@ -11,7 +11,11 @@ public class GamePanel extends JPanel implements ActionListener
 	private int count = 0;
 	private int baseScore = 2;
 	private int dX = 2;
+	private int dY = 0;
+	private int playerY;
 	protected Timer timer;
+	private Image standingImg;
+	private Image crouchingImg;
 
 	private int mapX[] = { 0 };
 	private int mapY[] = { 450 };
@@ -20,12 +24,16 @@ public class GamePanel extends JPanel implements ActionListener
 	{
 		timer = new Timer(delay, this);
 		timer.start();
+		crouchingImg = Toolkit.getDefaultToolkit().getImage("crouching.png");
+		standingImg = Toolkit.getDefaultToolkit().getImage("standing.png");
 		addKeyListener(new MyKeyListener());
 		setFocusable(true);
 	}
 
 	public void paint(Graphics g)
 	{
+		Graphics2D g2d = (Graphics2D)g;
+		
 		g.setColor(Color.white);
 		g.fillRect(0, 0, 600, 600);
 		g.setColor(Color.black);
@@ -33,6 +41,12 @@ public class GamePanel extends JPanel implements ActionListener
 		g.setColor(Color.red);
 		g.setFont(new Font("SansSerif", Font.BOLD, 10));
 		g.drawString(Integer.toString(score), 10, 10);
+		if(dY!=0)
+		{
+			g2d.drawImage(crouchingImg, 50, 300, this);
+		}
+		else
+			g2d.drawImage(standingImg, 50, 300, this);
 
 	}
 
