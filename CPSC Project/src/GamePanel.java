@@ -55,6 +55,13 @@ public class GamePanel extends JPanel implements ActionListener
 		
 		playerY+=dY;
 		
+		if(playerY>=600)
+		{
+			g.setFont(new Font("SansSerif", Font.BOLD, 70));
+			g.drawString("GAME OVER!", 90, 300);
+			baseScore=0;
+		}
+		
 		if(dY!=0)
 		{
 			g2d.drawImage(crouchingImg, 50, playerY, this);
