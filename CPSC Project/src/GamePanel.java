@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
- 
+
 public class GamePanel extends JPanel implements ActionListener
 {
 	private boolean slow = false;
@@ -19,11 +19,12 @@ public class GamePanel extends JPanel implements ActionListener
 	private Image crouchingImg;
 	
 	private int currLevel = 0;
-	private int maxLevel = 3;
-	private int mapX[] = { 0, 1100, 1425};
-	private int mapY[] = { 450, 450, 430};
-	private int mapWidth[] = {1000, 250, 150};
-	private int mapHeight[] = {150, 150, 170};
+	private int maxLevel = 11;
+	private int mapX[] = { 0, 1100, 1425, 1650, 1850, 2100, 2500, 2700, 2850, 3250, 3600};
+	private int mapY[] = { 450, 450, 430, 410, 510, 560, 500, 440, 400, 350, 380};
+	private int mapWidth[] = {1000, 250, 150, 100, 200, 350, 150, 50, 300, 250, 2000};
+	private int mapHeight[] = {150, 150, 170, 190, 90, 40, 100, 160, 200, 250, 220};
+	private int finishLine = 4600;
 	
 
 	public GamePanel()
@@ -55,19 +56,31 @@ public class GamePanel extends JPanel implements ActionListener
 		
 		playerY+=dY;
 		
-		if(playerY>=600)
-		{
-			g.setFont(new Font("SansSerif", Font.BOLD, 70));
-			g.drawString("GAME OVER!", 90, 300);
-			baseScore=0;
-		}
-		
 		if(dY!=0)
 		{
 			g2d.drawImage(crouchingImg, 50, playerY, this);
 		}
 		else
 			g2d.drawImage(standingImg, 50, playerY, this);
+		
+		g.setColor(Color.blue);
+		g.fillRect(finishLine, 0, 15, 600);
+		
+		if(playerY>=600)
+		{
+			g.setColor(Color.red);
+			g.setFont(new Font("SansSerif", Font.BOLD, 70));
+			g.drawString("GAME OVER!", 80, 300);
+			baseScore=0;
+		}
+		
+		if(finishLine<=-50)
+		{
+			g.setColor(Color.green);
+			g.setFont(new Font("SansSerif", Font.BOLD, 50));
+			g.drawString("LEVEL COMPLETE", 70, 300);
+			baseScore=0;
+		}
 
 	}
 
@@ -112,7 +125,7 @@ public class GamePanel extends JPanel implements ActionListener
 			playerY=mapY[currLevel]-62;
 		}
 		
-		if(mapX[currLevel]+mapWidth[currLevel]==0 && currLevel<maxLevel-1)
+		if(mapX[currLevel]+mapWidth[currLevel]<=15 && currLevel<maxLevel-1)
 		{
 			currLevel++;
 		}
@@ -163,6 +176,7 @@ public class GamePanel extends JPanel implements ActionListener
 		{
 			mapX[i] = mapX[i] - dX;
 		}
+		finishLine-=dX;
 	}
 
 	public void goSlow()
