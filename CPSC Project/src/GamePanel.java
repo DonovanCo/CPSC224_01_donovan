@@ -7,6 +7,8 @@ public class GamePanel extends JPanel implements ActionListener
 	private boolean slow = false;
 	private boolean fast = false;
 	private boolean isJumping = false;
+	int currentLevel = 0;
+	int currentSprite = 0;
 	private int score = 0;
 	private int delay = 25;
 	private int count = 0;
@@ -21,23 +23,25 @@ public class GamePanel extends JPanel implements ActionListener
 	
 	private int currLevel = 0;
 	private int maxLevel = 11;
-	private int mapX[] = { 0, 1100, 1425, 1650, 1850, 2100, 2500, 2700, 2850, 3250, 3600};
-	private int mapY[] = { 450, 450, 430, 410, 510, 560, 500, 440, 400, 350, 380};
-	private int mapWidth[] = {1000, 250, 150, 100, 200, 350, 150, 50, 300, 250, 2000};
-	private int mapHeight[] = {150, 150, 170, 190, 90, 40, 100, 160, 200, 250, 220};
-	private int finishLine = 4600;
+	private int mapX[][] = { {0, 1100, 1425, 1650, 1850, 2100, 2500, 2700, 2850, 3250, 3600}};
+	private int mapY[][] = { {450, 450, 430, 410, 510, 560, 500, 440, 400, 350, 380}};
+	private int mapWidth[][] = {{1000, 250, 150, 100, 200, 350, 150, 50, 300, 250, 2000}};
+	private int mapHeight[][] = {{150, 150, 170, 190, 90, 40, 100, 160, 200, 250, 220}};
+	private int finishLine[] = {4600};
+	private int totalLength = 0;
 	
+	private String idleImg[] = {"standing.png"};
+	private String crouchImg[] = {"crouching.png"};
 
 	public GamePanel()
 	{
 		timer = new Timer(delay, this);
 		timer.start();
-		crouchingImg = Toolkit.getDefaultToolkit().getImage("crouching.png");
-		standingImg = Toolkit.getDefaultToolkit().getImage("standing.png");
+		crouchingImg = Toolkit.getDefaultToolkit().getImage(crouchImg[currentLevel]);
+		standingImg = Toolkit.getDefaultToolkit().getImage(idleImg[currentLevel]);
 		addKeyListener(new MyKeyListener());
 		setFocusable(true);
-		JProgressBar pg = new JProgressBar(0, 100);
-		add(pg);
+		setTotalLength();
 	}
 
 	public void paint(Graphics g)
@@ -50,7 +54,7 @@ public class GamePanel extends JPanel implements ActionListener
 		for(int i = 0; i<maxLevel; i++)
 		{
 			g.setColor(Color.black);
-			g.fillRect(mapX[i], mapY[i], mapWidth[i], mapHeight[i]);
+			g.fillRect(mapX[currentLevel][i], mapY[currentLevel][i], mapWidth[currentLevel][i], mapHeight[currentLevel][i]);
 		}
 		
 		g.setColor(Color.red);
@@ -70,7 +74,7 @@ public class GamePanel extends JPanel implements ActionListener
 		g.fillRect(0, 0, (int)(progress*600), 10);
 		
 		g.setColor(Color.blue);
-		g.fillRect(finishLine, 0, 15, 600);
+		g.fillRect(finishLine[currentLevel], 0, 15, 600);
 		
 		g.fillRect(584, 0, 10, 10);
 		
@@ -82,7 +86,7 @@ public class GamePanel extends JPanel implements ActionListener
 			baseScore=0;
 		}
 		
-		if(finishLine<=-50)
+		if(finishLine[currentLevel]<=-50)
 		{
 			g.setColor(Color.green);
 			g.setFont(new Font("SansSerif", Font.BOLD, 50));
@@ -120,26 +124,26 @@ public class GamePanel extends JPanel implements ActionListener
 			count = 0;
 			isJumping = false;
 		}	
-		else if(!isJumping && playerY<mapY[currLevel]-62)
+		else if(!isJumping && playerY<mapY[currentLevel][currLevel]-62)
 		{
 			dY=2;
 		}
-		else if(mapX[currLevel]+mapWidth[currLevel]<=50 && !isJumping)
+		else if(mapX[currentLevel][currLevel]+mapWidth[currentLevel][currLevel]<=50 && !isJumping)
 		{
 			dY=2;
 		}
-		else if(playerY>=mapY[currLevel]-62 && playerY<=mapY[currLevel]-60)
+		else if(playerY>=mapY[currentLevel][currLevel]-62 && playerY<=mapY[currentLevel][currLevel]-60)
 		{
 			dY=0;
-			playerY=mapY[currLevel]-62;
+			playerY=mapY[currentLevel][currLevel]-62;
 		}
 		
-		if(mapX[currLevel]+mapWidth[currLevel]<=15 && currLevel<maxLevel-1)
+		if(mapX[currentLevel][currLevel]+mapWidth[currentLevel][currLevel]<=15 && currLevel<maxLevel-1)
 		{
 			currLevel++;
 		}
 		
-		progress = (double)(4600 - finishLine)/4600;
+		progress = (double)(totalLength - finishLine[currentLevel])/totalLength;
 		
 		reMap();
 		repaint();
@@ -188,9 +192,9 @@ public class GamePanel extends JPanel implements ActionListener
 	{
 		for (int i = 0; i < maxLevel; i++)
 		{
-			mapX[i] = mapX[i] - dX;
+			mapX[currentLevel][i] = mapX[currentLevel][i] - dX;
 		}
-		finishLine-=dX;
+		finishLine[currentLevel]-=dX;
 	}
 
 	public void goSlow()
@@ -209,5 +213,10 @@ public class GamePanel extends JPanel implements ActionListener
 	{
 		slow = false;
 		fast = false;
+	}
+	
+	public void setTotalLength()
+	{
+		totalLength = finishLine[currentLevel];
 	}
 }
