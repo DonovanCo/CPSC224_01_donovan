@@ -14,6 +14,7 @@ public class GamePanel extends JPanel implements ActionListener
 	private int dX = 2;
 	private int dY = 0;
 	private int playerY = 350;
+	private double progress = 0;
 	protected Timer timer;
 	private Image standingImg;
 	private Image crouchingImg;
@@ -35,6 +36,8 @@ public class GamePanel extends JPanel implements ActionListener
 		standingImg = Toolkit.getDefaultToolkit().getImage("standing.png");
 		addKeyListener(new MyKeyListener());
 		setFocusable(true);
+		JProgressBar pg = new JProgressBar(0, 100);
+		add(pg);
 	}
 
 	public void paint(Graphics g)
@@ -52,7 +55,7 @@ public class GamePanel extends JPanel implements ActionListener
 		
 		g.setColor(Color.red);
 		g.setFont(new Font("SansSerif", Font.BOLD, 10));
-		g.drawString(Integer.toString(score), 10, 10);
+		g.drawString(Integer.toString(score), 10, 25);
 		
 		playerY+=dY;
 		
@@ -63,8 +66,13 @@ public class GamePanel extends JPanel implements ActionListener
 		else
 			g2d.drawImage(standingImg, 50, playerY, this);
 		
+		g.setColor(Color.red);
+		g.fillRect(0, 0, (int)(progress*600), 10);
+		
 		g.setColor(Color.blue);
 		g.fillRect(finishLine, 0, 15, 600);
+		
+		g.fillRect(584, 0, 10, 10);
 		
 		if(playerY>=600)
 		{
@@ -86,6 +94,7 @@ public class GamePanel extends JPanel implements ActionListener
 
 	public void actionPerformed(ActionEvent e)
 	{
+	
 		
 		if (slow)
 		{
@@ -130,8 +139,11 @@ public class GamePanel extends JPanel implements ActionListener
 			currLevel++;
 		}
 		
+		progress = (double)(4600 - finishLine)/4600;
+		
 		reMap();
 		repaint();
+		
 	}
 
 	class MyKeyListener extends KeyAdapter
@@ -147,17 +159,19 @@ public class GamePanel extends JPanel implements ActionListener
 		public void keyPressed(KeyEvent e)
 		{
 			char ch = e.getKeyChar();
-			if (ch == 'a')
+			
+			if(ch == ' ')
+			{
+				jump();
+			}
+			else if (ch == 'a')
 				goSlow();
 			else if (ch == 'd')
 				goFast();
 			else
 				resetSpeed();
 			
-			if(ch == ' ')
-			{
-				jump();
-			}
+			
 		}
 	}
 	
