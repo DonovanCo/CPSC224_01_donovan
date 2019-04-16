@@ -14,7 +14,9 @@ public class GameRunner extends JFrame
 		setResizable(false);
 
 		GamePanel tp = new GamePanel();
-		add(tp);
+		menuPanel menu = new menuPanel();
+		add(menu);
+		//add(tp);
 
 		setVisible(true);
 	}
