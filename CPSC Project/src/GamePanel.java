@@ -156,7 +156,12 @@ public class GamePanel extends JPanel implements ActionListener
 		@Override
 		public void keyReleased(KeyEvent e)
 		{
-			resetSpeed();
+			char ch = e.getKeyChar();
+			
+			if (ch == 'a')
+				resetSpeed();
+			else if (ch == 'd')
+				resetSpeed();
 		}
 
 		@Override
