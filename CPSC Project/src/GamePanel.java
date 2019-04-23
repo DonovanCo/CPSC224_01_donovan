@@ -33,12 +33,14 @@ public class GamePanel extends JPanel implements ActionListener
 	private String idleImg[] = {"standing.png", "", ""};
 	private String crouchImg[] = {"crouching.png", "", ""};
 
-	public GamePanel()
+	public GamePanel(int lvl, int sprite)
 	{
 		timer = new Timer(delay, this);
 		timer.start();
-		crouchingImg = Toolkit.getDefaultToolkit().getImage(crouchImg[currentLevel]);
-		standingImg = Toolkit.getDefaultToolkit().getImage(idleImg[currentLevel]);
+		currentLevel = lvl;
+		currentSprite = sprite;
+		crouchingImg = Toolkit.getDefaultToolkit().getImage(crouchImg[currentSprite]);
+		standingImg = Toolkit.getDefaultToolkit().getImage(idleImg[currentSprite]);
 		addKeyListener(new MyKeyListener());
 		setFocusable(true);
 		setTotalLength();
@@ -173,9 +175,7 @@ public class GamePanel extends JPanel implements ActionListener
 			else if (ch == 'd')
 				goFast();
 			else
-				resetSpeed();
-			
-			
+				resetSpeed();	
 		}
 	}
 	

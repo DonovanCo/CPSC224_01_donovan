@@ -13,8 +13,8 @@ public class GameRunner extends JFrame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 
-		GamePanel tp = new GamePanel();
 		menuPanel menu = new menuPanel();
+		GamePanel tp = new GamePanel(menu.getLevel(), menu.getPlayer());
 		add(menu);
 		//add(tp);
 
