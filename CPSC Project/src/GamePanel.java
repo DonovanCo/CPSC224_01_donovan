@@ -23,15 +23,15 @@ public class GamePanel extends JPanel implements ActionListener
 	
 	private int currLevel = 0;
 	private int maxLevel = 11;
-	private int mapX[][] = { {0, 1100, 1425, 1650, 1850, 2100, 2500, 2700, 2850, 3250, 3600}};
-	private int mapY[][] = { {450, 450, 430, 410, 510, 560, 500, 440, 400, 350, 380}};
-	private int mapWidth[][] = {{1000, 250, 150, 100, 200, 350, 150, 50, 300, 250, 2000}};
-	private int mapHeight[][] = {{150, 150, 170, 190, 90, 40, 100, 160, 200, 250, 220}};
-	private int finishLine[] = {4600};
+	private int mapX[][] = { {0, 1100, 1425, 1650, 1850, 2100, 2500, 2700, 2850, 3250, 3600}, {}, {}};
+	private int mapY[][] = { {450, 450, 430, 410, 510, 560, 500, 440, 400, 350, 380}, {}, {}};
+	private int mapWidth[][] = {{1000, 250, 150, 100, 200, 350, 150, 50, 300, 250, 2000}, {}, {}};
+	private int mapHeight[][] = {{150, 150, 170, 190, 90, 40, 100, 160, 200, 250, 220}, {}, {}};
+	private int finishLine[] = {4600, 0, 0};
 	private int totalLength = 0;
 	
-	private String idleImg[] = {"standing.png"};
-	private String crouchImg[] = {"crouching.png"};
+	private String idleImg[] = {"standing.png", "", ""};
+	private String crouchImg[] = {"crouching.png", "", ""};
 
 	public GamePanel()
 	{
