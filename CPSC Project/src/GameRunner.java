@@ -4,7 +4,6 @@ import javax.swing.*;
 
 public class GameRunner extends JFrame
 {
-
 	GameRunner()
 	{
 		setTitle("Test");
@@ -13,10 +12,8 @@ public class GameRunner extends JFrame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 
-		GamePanel tp = new GamePanel();
 		menuPanel menu = new menuPanel();
 		add(menu);
-		//add(tp);
 
 		setVisible(true);
 	}
