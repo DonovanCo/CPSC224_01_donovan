@@ -16,7 +16,7 @@ public class GameRunner extends JFrame
 		menuPanel menu = new menuPanel();
 		GamePanel gp = new GamePanel(menu.getLevel(), menu.getPlayer());
 		add(menu);
-		add(gp);
+		//add(gp);
 
 		setVisible(true);
 	}
