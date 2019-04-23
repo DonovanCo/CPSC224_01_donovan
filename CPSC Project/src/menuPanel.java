@@ -4,8 +4,6 @@ import javax.swing.*;
 
 public class menuPanel extends JPanel
 {
-	private JPanel menu;
-	private JPanel game;
 	private JLabel stickSkater;
 	private JPanel levelSelect;
 	private ButtonGroup levels;
@@ -23,9 +21,7 @@ public class menuPanel extends JPanel
 
 	public menuPanel()
 	{
-		setLayout(new CardLayout());
-		menu = new JPanel(new GridLayout(4, 1));
-		game = new GamePanel();
+		setLayout(new GridLayout(4, 1));
 
 		stickSkater = new JLabel("STICK SKATER", SwingConstants.CENTER);
 		stickSkater.setFont(new Font("nameFont", Font.BOLD, 40));
@@ -65,13 +61,10 @@ public class menuPanel extends JPanel
 		playGame.addActionListener(new playListener());
 		exit.addActionListener(new exitListener());
 
-		menu.add(stickSkater);
-		menu.add(levelSelect);
-		menu.add(playerSelect);
-		menu.add(buttons);
-		
-		add(menu, "MENU");
-		add(game, "GAME");
+		add(stickSkater);
+		add(levelSelect);
+		add(playerSelect);
+		add(buttons);
 	}
 
 	public int getLevel()
@@ -98,8 +91,16 @@ public class menuPanel extends JPanel
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			CardLayout c1 = (CardLayout)(getLayout());
-			c1.show(menuPanel.this, "GAME");
+			JFrame game = new JFrame();
+			game.setTitle("Test");
+
+			game.setSize(600, 600);
+			game.setResizable(false);
+			
+			JPanel gamePanel = new GamePanel();
+			game.add(gamePanel);
+			
+			game.setVisible(true);
 		}
 	}
 
