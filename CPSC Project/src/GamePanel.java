@@ -168,9 +168,8 @@ public class GamePanel extends JPanel implements ActionListener
 			char ch = e.getKeyChar();
 
 			if (ch == ' ')
-			{
 				jump();
-			} else if (ch == 'a')
+			else if (ch == 'a')
 				goSlow();
 			else if (ch == 'd')
 				goFast();
