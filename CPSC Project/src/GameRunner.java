@@ -7,16 +7,16 @@ public class GameRunner extends JFrame
 
 	GameRunner()
 	{
-		setTitle("Test");
+		setTitle("Stick Skate");
 
 		setSize(600, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 
 		menuPanel menu = new menuPanel();
-		GamePanel tp = new GamePanel(menu.getLevel(), menu.getPlayer());
+		GamePanel gp = new GamePanel(menu.getLevel(), menu.getPlayer());
 		add(menu);
-		//add(tp);
+		add(gp);
 
 		setVisible(true);
 	}

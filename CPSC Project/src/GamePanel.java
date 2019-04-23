@@ -41,8 +41,9 @@ public class GamePanel extends JPanel implements ActionListener
 		currentSprite = sprite;
 		crouchingImg = Toolkit.getDefaultToolkit().getImage(crouchImg[currentSprite]);
 		standingImg = Toolkit.getDefaultToolkit().getImage(idleImg[currentSprite]);
-		addKeyListener(new MyKeyListener());
-		setFocusable(true);
+		this.setFocusable(true);
+	    this.requestFocus();
+		this.addKeyListener(new MyKeyListener());
 		setTotalLength();
 	}
 
@@ -99,9 +100,7 @@ public class GamePanel extends JPanel implements ActionListener
 	}
 
 	public void actionPerformed(ActionEvent e)
-	{
-	
-		
+	{	
 		if (slow)
 		{
 			score += baseScore / 2;
