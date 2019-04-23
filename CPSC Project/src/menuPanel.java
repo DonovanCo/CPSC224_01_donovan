@@ -96,10 +96,10 @@ public class menuPanel extends JPanel
 
 			game.setSize(600, 600);
 			game.setResizable(false);
-			
+
 			JPanel gamePanel = new GamePanel(getLevel(), getPlayer());
 			game.add(gamePanel);
-			
+
 			game.setVisible(true);
 		}
 	}

@@ -13,7 +13,6 @@ public class GameRunner extends JFrame
 		setResizable(false);
 
 		menuPanel menu = new menuPanel();
-		GamePanel gp = new GamePanel(menu.getLevel(), menu.getPlayer());
 		add(menu);
 
 		setVisible(true);
