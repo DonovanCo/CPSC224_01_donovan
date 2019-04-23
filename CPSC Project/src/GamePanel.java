@@ -30,8 +30,8 @@ public class GamePanel extends JPanel implements ActionListener
 	private int finishLine[] = {4600, 0, 0};
 	private int totalLength = 0;
 	
-	private String idleImg[] = {"standing.png", "", ""};
-	private String crouchImg[] = {"crouching.png", "", ""};
+	private String idleImg[] = {"standingBlack.png", "standingRed.png", "standingBlue.png"};
+	private String crouchImg[] = {"crouchingBlack.png", "crouchingRed.png", "crouchingBlue.png"};
 
 	public GamePanel(int lvl, int sprite)
 	{
