@@ -173,8 +173,6 @@ public class GamePanel extends JPanel implements ActionListener
 				goSlow();
 			else if (ch == 'd')
 				goFast();
-			else
-				resetSpeed();
 		}
 	}
 
