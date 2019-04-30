@@ -21,13 +21,22 @@ public class GamePanel extends JPanel implements ActionListener
 	private Image standingImg;
 	private Image crouchingImg;
 
+	// Note: the least level is meant to be an annoying joke and cannot be won.
 	private int currLevel = 0;
-	private int maxLevel = 11;
-	private int mapX[][] = { { 0, 1100, 1425, 1650, 1850, 2100, 2500, 2700, 2850, 3250, 3600 }, {}, {} };
-	private int mapY[][] = { { 450, 450, 430, 410, 510, 560, 500, 440, 400, 350, 380 }, {}, {} };
-	private int mapWidth[][] = { { 1000, 250, 150, 100, 200, 350, 150, 50, 300, 250, 2000 }, {}, {} };
-	private int mapHeight[][] = { { 150, 150, 170, 190, 90, 40, 100, 160, 200, 250, 220 }, {}, {} };
-	private int finishLine[] = { 4600, 0, 0 };
+	private int maxLevel[] = {11, 15, 12};
+	private int mapX[][] = { { 0, 1100, 1425, 1650, 1850, 2100, 2500, 2700, 2850, 3250, 3600}, 
+							 {0, 400, 550, 850, 1100, 1300, 1450, 1600, 1700, 1850, 1950, 2100, 2250, 2550, 2800}, 
+							 {0, 300, 500, 650, 800, 1000, 1300, 1600, 1800, 1950, 2100, 2300} };
+	private int mapY[][] = { { 450, 450, 430, 410, 510, 560, 500, 440, 400, 350, 380 }, 
+							 {450, 400, 350, 550, 500, 450, 400, 350, 400, 350, 400, 350, 300, 250, 350}, 
+							 {500, 450, 400, 450, 500, 550, 500, 450, 400, 350, 300, 350} };
+	private int mapWidth[][] = { { 1000, 250, 150, 100, 200, 350, 150, 50, 300, 250, 2000 }, 
+			  					 {300, 50, 100, 150, 100, 50, 50, 50, 50, 50, 50, 50, 200, 150, 1000}, 
+			  					 {200, 100, 50, 50, 100, 200, 200, 100, 50, 50, 100, 200} };
+	private int mapHeight[][] = { { 150, 150, 170, 190, 90, 40, 100, 160, 200, 250, 220 }, 
+								  {150, 200, 250, 50, 100, 150, 200, 250, 200, 250, 200, 250, 300, 350, 300}, 
+								  {100, 150, 200, 150, 100, 50, 100, 150, 200, 250, 300, 250} };
+	private int finishLine[] = { 4600, 2850, 3400 };
 	private int totalLength = 0;
 
 	private String idleImg[] = { "standingBlack.png", "standingRed.png", "standingBlue.png" };
@@ -54,7 +63,7 @@ public class GamePanel extends JPanel implements ActionListener
 		g.setColor(Color.white);
 		g.fillRect(0, 0, 600, 600);
 
-		for (int i = 0; i < maxLevel; i++)
+		for (int i = 0; i < maxLevel[currentLevel]; i++)
 		{
 			g.setColor(Color.black);
 			g.fillRect(mapX[currentLevel][i], mapY[currentLevel][i], mapWidth[currentLevel][i],
@@ -86,6 +95,7 @@ public class GamePanel extends JPanel implements ActionListener
 			g.setColor(Color.red);
 			g.setFont(new Font("SansSerif", Font.BOLD, 70));
 			g.drawString("GAME OVER!", 80, 300);
+			g.drawString("Score: " +Integer.toString(score), 80, 400);
 			baseScore = 0;
 		}
 
@@ -94,6 +104,7 @@ public class GamePanel extends JPanel implements ActionListener
 			g.setColor(Color.green);
 			g.setFont(new Font("SansSerif", Font.BOLD, 50));
 			g.drawString("LEVEL COMPLETE", 70, 300);
+			g.drawString("Score: " +Integer.toString(score), 80, 400);
 			baseScore = 0;
 		}
 
@@ -136,7 +147,7 @@ public class GamePanel extends JPanel implements ActionListener
 			playerY = mapY[currentLevel][currLevel] - 62;
 		}
 
-		if (mapX[currentLevel][currLevel] + mapWidth[currentLevel][currLevel] <= 15 && currLevel < maxLevel - 1)
+		if (mapX[currentLevel][currLevel] + mapWidth[currentLevel][currLevel] <= 15 && currLevel < maxLevel[currentLevel] - 1)
 		{
 			currLevel++;
 		}
@@ -187,7 +198,7 @@ public class GamePanel extends JPanel implements ActionListener
 
 	public void reMap()
 	{
-		for (int i = 0; i < maxLevel; i++)
+		for (int i = 0; i < maxLevel[currentLevel]; i++)
 		{
 			mapX[currentLevel][i] = mapX[currentLevel][i] - dX;
 		}
