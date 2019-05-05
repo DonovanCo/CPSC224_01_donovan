@@ -92,7 +92,7 @@ public class menuPanel extends JPanel
 		public void actionPerformed(ActionEvent e)
 		{
 			JFrame game = new JFrame();
-			game.setTitle("Test");
+			game.setTitle("Stick Skater");
 
 			game.setSize(600, 600);
 			game.setResizable(false);
